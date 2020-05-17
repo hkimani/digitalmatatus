@@ -1,0 +1,6 @@
+[submodule "api"]
+	path = api
+	url = ./api
+[submodule "fe"]
+	path = fe
+	url = ./fe
