@@ -38,7 +38,7 @@ services:
   #     - db
 
   db:
-    container_name: mongo
+    container_name: mongo-dm
     restart: unless-stopped
     image: mongo
     network_mode: "host"
