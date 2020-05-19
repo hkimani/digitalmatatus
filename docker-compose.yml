@@ -37,7 +37,9 @@ services:
   #   depends_on:
   #     - db
 
-  db:
+
+  # Mongo DB server
+  mongodb:
     container_name: mongo-dm
     restart: unless-stopped
     image: mongo
@@ -47,3 +49,32 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD
     volumes:
       - ~/projs/digitalmatatus/db/nodes/rdb1:/data/db
+
+  # Mariadb server
+  sqldb:
+    container_name: mariadb-dm
+    image: mariadb
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD
+    ports:
+      - "3306:3306"
+    networks: 
+      - sql
+
+  # phpmyadmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: unless-stopped
+    environment:
+      - PMA_HOST=sqldb
+      - MYSQL_ROOT_PASSWORD
+    ports:
+      - "8081:80"
+    depends_on:
+      - sqldb
+    networks:
+      - sql
+
+networks:
+  sql:
