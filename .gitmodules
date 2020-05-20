@@ -7,3 +7,6 @@
 [submodule "db"]
 	path = db
 	url = ./db
+[submodule "django"]
+	path = django
+	url = ./django
