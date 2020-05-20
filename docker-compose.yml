@@ -51,8 +51,9 @@ services:
       - ~/projs/digitalmatatus/db/nodes/rdb1:/data/db
 
   # Mariadb server
+  # ... Remember to give it some time to start up
+  # ... Like 3 Minutes
   sqldb:
-    container_name: mariadb
     # command: --init-file /data/application/init.sql
     image: mariadb
     restart: unless-stopped
@@ -63,8 +64,6 @@ services:
       - MYSQL_DATABASE
     ports:
       - "3306:3306"
-    networks: 
-      - sql
 
   # phpmyadmin
   phpmyadmin:
@@ -77,20 +76,23 @@ services:
       - "8081:80"
     depends_on:
       - sqldb
-    networks:
-      - sql
   
   # Api for the GTFS data
   django:
-    build: ./django
-    command: python manage.py runserver 0.0.0.0:8000
+    build:
+      context: ./django
+      dockerfile: Dockerfile
+    command: /bin/sh /code/scripts/entrypoint.sh
+    environment:
+      - USER_EMAIL
+      - PROJECT_NAME
+      - ENV
+      - MYSQL_ROOT_PASSWORD
+      - MYSQL_DATABASE
+      - MYSQL_USER
     # volumes: 
     #   ./django/:/code
     ports: 
       - "8000:8000"
     depends_on: 
       - sqldb
-
-
-networks:
-  sql:
