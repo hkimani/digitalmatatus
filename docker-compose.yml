@@ -70,7 +70,7 @@ services:
     image: phpmyadmin/phpmyadmin
     restart: unless-stopped
     environment:
-      - PMA_HOST=mariadb
+      - PMA_HOST=sqldb
       - MYSQL_ROOT_PASSWORD
     ports:
       - "8081:80"
@@ -86,7 +86,7 @@ services:
     environment:
       - USER_EMAIL
       - PROJECT_NAME
-      - ENV
+      - ENV=Production
       - MYSQL_ROOT_PASSWORD
       - MYSQL_DATABASE
       - MYSQL_USER
