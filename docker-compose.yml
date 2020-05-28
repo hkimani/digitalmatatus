@@ -43,6 +43,18 @@ services:
     depends_on:
       - mongodb
 
+  # phpmyadmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: unless-stopped
+    environment:
+      - PMA_HOST=sqldb
+      - MYSQL_ROOT_PASSWORD
+    ports:
+      - "8081:80"
+    depends_on:
+      - sqldb
+  
 
   # Mongo DB server
   mongodb:
@@ -71,25 +83,14 @@ services:
     ports:
       - "3306:3306"
 
-  # phpmyadmin
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    restart: unless-stopped
-    environment:
-      - PMA_HOST=sqldb
-      - MYSQL_ROOT_PASSWORD
-    ports:
-      - "8081:80"
-    depends_on:
-      - sqldb
-  
+
   # Api for the GTFS data
   django:
+    restart: unless-stopped
     build:
       context: ./django
       dockerfile: Dockerfile
     command: /bin/sh /code/scripts/entrypoint.sh
-    restart: unless-stopped
     environment:
       - USER_EMAIL
       - PROJECT_NAME
