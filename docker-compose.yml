@@ -17,7 +17,8 @@ services:
       - 80:80
       - 443:443
     depends_on:
-      - db
+      - sqldb
+      - django
       - api
   api:
     restart: unless-stopped
@@ -35,7 +36,7 @@ services:
       - /etc/letsencrypt/live/weskool.team:/etc/letsencrypt/live/weskool.team/
       - /etc/letsencrypt/archive/weskool.team:/etc/letsencrypt/archive/weskool.team/
     depends_on:
-      - db
+      - mongodb
 
 
   # Mongo DB server
@@ -83,6 +84,7 @@ services:
       context: ./django
       dockerfile: Dockerfile
     command: /bin/sh /code/scripts/entrypoint.sh
+    restart: unless-stopped
     environment:
       - USER_EMAIL
       - PROJECT_NAME
