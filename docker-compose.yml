@@ -115,7 +115,7 @@ services:
       - django
     ports:
       # change this port for a new instance
-      - 8000:80
+      - 8080:80
       - 8443:443
     # Added certs volume
     volumes:
