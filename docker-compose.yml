@@ -1,6 +1,7 @@
 version: "3"
 
 services:
+  # Front end
   faredm:
     restart: unless-stopped
     build:
@@ -20,6 +21,8 @@ services:
       - sqldb
       - django
       - api
+  
+  # Nosql api for authentication
   api:
     restart: unless-stopped
     build:
