@@ -1,12 +1,12 @@
 [submodule "api"]
 	path = api
-	url = ./api
+	url = https://github.com/kimanihuon/digitalmatatusapi.git
 [submodule "fe"]
 	path = fe
-	url = ./fe
+	url = https://github.com/kimanihuon/digitalmatatusfe.git
 [submodule "db"]
 	path = db
-	url = ./db
+	url = https://github.com/kimanihuon/digitalmatatusdb.git
 [submodule "django"]
 	path = django
-	url = ./django
+	url = https://github.com/kimanihuon/digitalmatatusdjango.git
