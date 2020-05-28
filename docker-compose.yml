@@ -116,6 +116,7 @@ services:
     ports:
       # change this port for a new instance
       - 8000:80
+      - 8443:443
     # Added certs volume
     volumes:
       - ./django/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
