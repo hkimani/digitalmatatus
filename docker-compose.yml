@@ -90,7 +90,7 @@ services:
     build:
       context: ./django
       dockerfile: Dockerfile
-    command: /bin/sh /code/scripts/entrypoint.sh
+    command: /bin/sh /opt/digimatt/scripts/entrypoint.sh
     environment:
       - USER_EMAIL
       - PROJECT_NAME
