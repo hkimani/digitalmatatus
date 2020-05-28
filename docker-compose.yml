@@ -1,41 +1,41 @@
 version: "3"
 
 services:
-  # faredm:
-  #   restart: unless-stopped
-  #   build:
-  #     context: ./fe
-  #     dockerfile: Dockerfile
-  #   environment:
-  #     - ENV
-  #     - JWT
-  #     - CERTKEY
-  #     - CERTCHAIN
-  #   volumes:
-  #     - /etc/letsencrypt:/etc/nginx/certs/
-  #   ports:
-  #     - 80:80
-  #     - 443:443
-  #   depends_on:
-  #     - db
-  #     - api
-  # api:
-  #   restart: unless-stopped
-  #   build:
-  #     context: ./api
-  #     dockerfile: Dockerfile
-  #   environment:
-  #     - ENV
-  #     - JWT
-  #     - CERTKEY
-  #     - CERTCHAIN
-  #   network_mode: "host"
-  #   command: ["node", "index.js"]
-  #   volumes:
-  #     - /etc/letsencrypt/live/weskool.team:/etc/letsencrypt/live/weskool.team/
-  #     - /etc/letsencrypt/archive/weskool.team:/etc/letsencrypt/archive/weskool.team/
-  #   depends_on:
-  #     - db
+  faredm:
+    restart: unless-stopped
+    build:
+      context: ./fe
+      dockerfile: Dockerfile
+    environment:
+      - ENV
+      - JWT
+      - CERTKEY
+      - CERTCHAIN
+    volumes:
+      - /etc/letsencrypt:/etc/nginx/certs/
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - db
+      - api
+  api:
+    restart: unless-stopped
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    environment:
+      - ENV
+      - JWT
+      - CERTKEY
+      - CERTCHAIN
+    network_mode: "host"
+    command: ["node", "index.js"]
+    volumes:
+      - /etc/letsencrypt/live/weskool.team:/etc/letsencrypt/live/weskool.team/
+      - /etc/letsencrypt/archive/weskool.team:/etc/letsencrypt/archive/weskool.team/
+    depends_on:
+      - db
 
 
   # Mongo DB server
