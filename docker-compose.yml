@@ -44,16 +44,16 @@ services:
       - mongodb
 
   # phpmyadmin
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    restart: unless-stopped
-    environment:
-      - PMA_HOST=sqldb
-      - MYSQL_ROOT_PASSWORD
-    ports:
-      - "8081:80"
-    depends_on:
-      - sqldb
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin
+  #   restart: unless-stopped
+  #   environment:
+  #     - PMA_HOST=sqldb
+  #     - MYSQL_ROOT_PASSWORD
+  #   ports:
+  #     - "8081:80"
+  #   depends_on:
+  #     - sqldb
   
 
   # Mongo DB server
@@ -105,6 +105,7 @@ services:
     depends_on: 
       - sqldb
 
+  # Web server for django
   nginx:
     restart: unless-stopped
     build:
