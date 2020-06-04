@@ -75,8 +75,8 @@ services:
     # command: --init-file /data/application/init.sql
     image: mariadb
     restart: unless-stopped
-    # volumes:
-    #     - ./db/sql/init.sql:/data/application/init.sql
+    volumes:
+        - ./db/sql/db:/var/lib/mysql:rw
     environment:
       - MYSQL_ROOT_PASSWORD
       - MYSQL_DATABASE
